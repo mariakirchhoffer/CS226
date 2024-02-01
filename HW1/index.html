@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Maria's Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-sky-950">
+    <div class="md:w-1/2 md:mx-auto">
+        <header class="flex flex-row mx-auto bg-gray-700">
+            <div class="basis-48 text-center">
+                <img class="h-48 w-36" src="assets/img/maria.jpg" alt="Photo of me"/>
+            </div>
+
+            <div class="basis-auto">
+                <div class="flex h-48 flex-col justify-center text-gray-300">
+                    <h1 class="text-4xl font-semibold mb-2">Maria Kirchhoffer</h1>
+
+                    <p class="bg-gray-200 text-gray-700 hover:bg-gray-500 hover:text-gray-700 px-2 py-1" id="email">click to show email</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="bg-gray-400 h-96 px-3 py-2">
+            <p class="text-gray-900">
+                I just wanted to drop a quick note to say how excited I am to be in your PHP/MySQL class. I've always been keen on diving into web development, and this class feels like the perfect place to start. PHP and MySQL seem like the bread and butter of so many cool websites, and I'm really looking forward to getting to grips with them. I'm eager to learn all the tricks of the trade and start putting together my own projects. It's awesome to be in a class where I can share this enthusiasm with others, and I'm sure your guidance will be invaluable. Can't wait to see what the rest of the course has in store!
+            </p>
+        </main>
+
+        <footer class="bg-gray-700 text-gray-300 px-3 py-2">
+            <p>&copy; Maria Kirchhoffer. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- BEGIN::Script Imports -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- END::Script Imports -->
+
+    <!-- BEGIN::Scripts -->
+    <script>
+        $('#email').on('click', function() {
+            $(this).attr('class', 'text-xl');
+            $(this).text('hello@mariakirchhoffer.com');
+        });
+    </script>
+    <!-- END::Scripts -->
+</body>
+</html>
