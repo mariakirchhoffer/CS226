@@ -3,75 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Array Assignment</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Array Operations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 p-8">
+
 <?php
-// Function to print array in a table
-function printTable($array) {
-    echo '<table class="table-auto w-full mb-8 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">';
-    echo '<thead><tr class="bg-gray-200"><th class="px-4 py-2">Key</th><th class="px-4 py-2">Value</th></tr></thead>';
-    echo '<tbody>';
+
+// Function to print array in a table using Tailwind CSS for styling
+function printTable($array, $title = 'Array Table') {
+    echo "<div class='mb-8'><h2 class='text-lg font-bold mb-2'>$title</h2>";
+    echo '<div class="overflow-x-auto"><table class="min-w-full table-auto bg-white rounded-lg overflow-hidden">';
+    echo '<thead class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal"><tr>';
+    echo '<th class="py-3 px-6 text-left">Key</th>';
+    echo '<th class="py-3 px-6 text-left">Type</th>';
+    echo '</tr></thead>';
+    echo '<tbody class="text-gray-600 text-sm font-light">';
     foreach ($array as $key => $value) {
-        echo "<tr><td class='border px-4 py-2'>$key</td><td class='border px-4 py-2'>$value</td></tr>";
+        echo "<tr class='border-b border-gray-200 hover:bg-gray-100'>";
+        echo "<td class='py-3 px-6 text-left whitespace-nowrap'>" . ucfirst($key) . "</td>";
+        echo "<td class='py-3 px-6 text-left'>" . ucfirst($value) . "</td>";
+        echo '</tr>';
     }
-    echo '</tbody></table>';
+    echo '</tbody></table></div></div>';
 }
 
-// A. Creating a one-dimensional associative array
+// A. Creating a one-dimensional associative array with fruits and vegetables
 $assocArray = [
-    "one" => 10,
-    "two" => 20,
-    "three" => 30,
-    "four" => 40,
-    "five" => 50,
-    "six" => 60,
-    "seven" => 70,
-    "eight" => 80,
-    "nine" => 90,
-    "ten" => 100
+    "apple" => "fruit",
+    "banana" => "fruit",
+    "carrot" => "vegetable",
+    "date" => "fruit",
+    "eggplant" => "vegetable",
+    "fig" => "fruit",
+    "grape" => "fruit",
+    "honeydew" => "fruit",
+    "iris" => "vegetable",
+    "jackfruit" => "fruit"
 ];
 
-// B. Print out the array
-printTable($assocArray);
+// B. Print out the original array
+printTable($assocArray, 'Original Array');
 
-// C. Filter array based on a criterion and print
-// Criterion: Value greater than 50
-echo "<p>Elements with values > 50:</p>";
-$filteredArray = array_filter($assocArray, function($value) {
-    return $value > 50;
-});
-printTable($filteredArray);
+// C. Filter array based on the new criterion: Key starts with a letter before 'M'
+echo "<p>Elements with keys starting with a letter before 'M':</p>";
+$filteredArray = array_filter($assocArray, function($key) {
+    return strtolower($key[0]) < 'm';
+}, ARRAY_FILTER_USE_KEY);
+printTable($filteredArray, 'Filtered Array (Key Starts Before \'M\')');
 
-// D. Sort the array and print
+// D. Sort the array by value and print
 asort($assocArray);
-echo "<p>Sorted array by value:</p>";
-printTable($assocArray);
-
-// E. Unset the fourth element
-$keys = array_keys($assocArray);
-unset($assocArray[$keys[3]]);
+printTable($assocArray, 'Sorted Array by Type');
 
 // F. Print the reverse sorted array
 arsort($assocArray);
-echo "<p>Reverse sorted array:</p>";
-printTable($assocArray);
+printTable($assocArray, 'Reverse Sorted Array by Type');
 
 // G. Print the array sorted by key
 ksort($assocArray);
-echo "<p>Array sorted by key:</p>";
-printTable($assocArray);
+printTable($assocArray, 'Array Sorted by Key');
 
 // H. EXTRA CREDIT: Print 3 random elements
-echo "<p>Three random elements:</p>";
 $randomKeys = array_rand($assocArray, 3);
-echo "<ul class='list-disc ml-8'>";
+echo "<h2 class='text-lg font-bold mb-2'>Three Random Elements</h2><ul class='list-disc pl-8 mb-8'>";
 foreach ($randomKeys as $key) {
-    echo "<li>{$assocArray[$key]}</li>";
+    echo "<li>" . ucfirst($key) . " - " . ucfirst($assocArray[$key]) . "</li>";
 }
 echo "</ul>";
+
 ?>
+
 </body>
 </html>
-
